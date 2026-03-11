@@ -16,7 +16,7 @@ A framework for testing LLM output quality. Think pytest, but for prompts.
 │ Model          │ Pass %   │ Avg (ms) │ Cost/call  │
 ├────────────────┼──────────┼──────────┼────────────┤
 │ Gemini Flash   │ 94%      │ 1200     │ $0.003     │
-│ GPT-4o         │ 98%      │ 2100     │ $0.020     │
+│ Claude Sonnet  │ 98%      │ 2100     │ $0.020     │
 └────────────────┴──────────┴──────────┴────────────┘
 ```
 
@@ -30,7 +30,7 @@ A framework for testing LLM output quality. Think pytest, but for prompts.
 
 ## Tech stack
 
-TypeScript, Zod, Gemini API, OpenAI API
+TypeScript, Zod, Gemini API, Anthropic API
 
 ## Getting started
 
