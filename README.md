@@ -2,7 +2,7 @@
 
 A framework for testing LLM output quality. Think pytest, but for prompts.
 
-[![CI](https://github.com/albertalov/llm-eval-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/albertalov/llm-eval-framework/actions/workflows/ci.yml)
+[![CI](https://github.com/vola-trebla/llm-eval-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/vola-trebla/llm-eval-framework/actions/workflows/ci.yml)
 
 ## What it does
 
