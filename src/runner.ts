@@ -1,6 +1,5 @@
-import type { TestSuite, TestResult } from './types.js';
-import type { LLMProvider } from './types.js';
-import { runAssertions } from './assertions.js';
+import type { TestSuite, TestResult, LLMProvider } from './types.js';
+import { runAssertions } from './assertions/index.js';
 
 export async function runSuite(
   suite: TestSuite,

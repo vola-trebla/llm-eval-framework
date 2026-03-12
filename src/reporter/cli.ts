@@ -1,6 +1,4 @@
-import type { MetricsSummary } from './metrics.js';
-import type { TestResult } from './types.js';
-import { writeFileSync } from 'fs';
+import type { MetricsSummary } from '../types.js';
 
 export function printTable(summaries: MetricsSummary[]): void {
   console.log('\n📊 LLM Eval Results\n');
@@ -27,15 +25,4 @@ export function printTable(summaries: MetricsSummary[]): void {
   }
 
   console.log('─'.repeat(70));
-}
-
-export function exportJson(results: TestResult[], summaries: MetricsSummary[], path: string): void {
-  const report = {
-    generatedAt: new Date().toISOString(),
-    summaries,
-    results,
-  };
-
-  writeFileSync(path, JSON.stringify(report, null, 2));
-  console.log(`\n✅ Report saved to ${path}`);
 }

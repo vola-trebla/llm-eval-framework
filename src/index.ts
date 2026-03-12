@@ -1,8 +1,8 @@
 import 'dotenv/config';
-import { GeminiProvider } from './providers/gemini.js';
+import { createProvider } from './providers/index.js';
 import { runSuite } from './runner.js';
 import { collectMetrics } from './metrics.js';
-import { printTable, exportJson } from './reporter.js';
+import { printTable, exportJson } from './reporter/index.js';
 import type { TestSuite } from './types.js';
 
 const suite: TestSuite = {
@@ -10,7 +10,7 @@ const suite: TestSuite = {
   models: [
     { provider: 'gemini', model: 'gemini-2.5-flash' },
   ],
- cases: [
+  cases: [
     {
       id: 'test-01',
       prompt: 'What is an AI agent? Reply in one sentence.',
@@ -32,9 +32,7 @@ const suite: TestSuite = {
   ],
 };
 
-const providers = suite.models.map(m =>
-  new GeminiProvider(process.env['GEMINI_API_KEY'] ?? '', m.model)
-);
+const providers = suite.models.map(m => createProvider(m));
 
 const results = await runSuite(suite, providers);
 const summaries = collectMetrics(results);
