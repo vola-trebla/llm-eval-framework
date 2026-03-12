@@ -1,7 +1,7 @@
 import type { z } from 'zod';
 
 export interface ModelConfig {
-  provider: 'gemini' | 'anthropic';
+  provider: 'gemini' | 'anthropic' | 'openai';
   model: string;
   apiKey?: string;
 }

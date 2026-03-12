@@ -14,7 +14,7 @@ export const TestCaseSchema = z.object({
 export const TestSuiteSchema = z.object({
   name: z.string(),
   models: z.array(z.object({
-    provider: z.enum(['gemini', 'anthropic']),
+    provider: z.enum(['gemini', 'anthropic', 'openai']),
     model: z.string(),
     apiKey: z.string().optional(),
   })),

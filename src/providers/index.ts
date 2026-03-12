@@ -1,5 +1,7 @@
 import type { ModelConfig, LLMProvider } from '../types.js';
 import { GeminiProvider } from './gemini.js';
+import { AnthropicProvider } from './anthropic.js';
+import { OpenAIProvider } from './openai.js';
 
 export function createProvider(config: ModelConfig): LLMProvider {
   switch (config.provider) {
@@ -9,6 +11,14 @@ export function createProvider(config: ModelConfig): LLMProvider {
         config.model,
       );
     case 'anthropic':
-      throw new Error('Anthropic provider not implemented yet');
+      return new AnthropicProvider(
+        config.apiKey ?? process.env['ANTHROPIC_API_KEY'] ?? '',
+        config.model,
+      );
+    case 'openai':
+      return new OpenAIProvider(
+        config.apiKey ?? process.env['OPENAI_API_KEY'] ?? '',
+        config.model,
+      );
   }
 }
