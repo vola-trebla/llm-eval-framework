@@ -37,6 +37,7 @@ export interface TestResult {
   passed: boolean;
   assertions: AssertionResult[];
   latencyMs: number;
+  tokensUsed: number;
 }
 
 export interface ProviderResponse {
