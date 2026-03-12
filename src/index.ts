@@ -9,6 +9,8 @@ const suite: TestSuite = {
   name: 'AI Test Suite',
   models: [
     { provider: 'gemini', model: 'gemini-2.5-flash' },
+    { provider: 'anthropic', model: 'claude-sonnet-4-20250514' },
+    { provider: 'openai', model: 'gpt-4o' },
   ],
   cases: [
     {

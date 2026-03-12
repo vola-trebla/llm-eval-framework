@@ -12,41 +12,28 @@ A framework for testing LLM output quality. Think pytest, but for prompts.
 4. Get a comparison report:
 
 ```
-┌────────────────┬──────────┬──────────┬────────────┐
-│ Model          │ Pass %   │ Avg (ms) │ Cost/call  │
-├────────────────┼──────────┼──────────┼────────────┤
-│ Gemini Flash   │ 94%      │ 1200     │ $0.003     │
-│ Claude Sonnet  │ 98%      │ 2100     │ $0.020     │
-└────────────────┴──────────┴──────────┴────────────┘
+📊 LLM Eval Results
+
+──────────────────────────────────────────────────────────────────────
+Model                     Pass %     Avg ms     p50        p95        Tokens
+──────────────────────────────────────────────────────────────────────
+gemini-2.5-flash          50%        5767       2541       8992       1950
+claude-sonnet-4-20250514  100%       1870       1640       2310       486
+gpt-4o                    100%       2130       1980       2450       512
+──────────────────────────────────────────────────────────────────────
 ```
 
 ## Example output
 
-### CLI report
-
-```
-┌──────────────────┬───────┬────────┬──────────┬─────────────┬─────────────┬──────────────┐
-│ Model            │ Total │ Passed │ Pass %   │ Avg (ms)    │ p50 (ms)    │ p95 (ms)     │
-├──────────────────┼───────┼────────┼──────────┼─────────────┼─────────────┼──────────────┤
-│ gemini-2.5-flash │ 2     │ 1      │ 50.0%    │ 5767        │ 2541        │ 8992         │
-└──────────────────┴───────┴────────┴──────────┴─────────────┴─────────────┴──────────────┘
-```
-
-### JSON report (excerpt)
+### JSON report (multi-model comparison)
 
 ```json
 {
-  "caseId": "test-01",
-  "model": "gemini-2.5-flash",
-  "output": "An AI agent is a system that perceives its environment and acts autonomously to achieve specific goals.",
-  "passed": true,
-  "assertions": [
-    { "type": "contains", "passed": true, "message": "Output contains: \"agent\"" },
-    { "type": "notContains", "passed": true, "message": "Output does not contain: \"I cannot\"" },
-    { "type": "lengthInRange", "passed": true, "message": "Output length 103 is in range [20, 300]" }
-  ],
-  "latencyMs": 2541,
-  "tokensUsed": 232
+  "summaries": [
+    { "model": "gemini-2.5-flash",          "total": 2, "passed": 1, "passRate": 0.5,  "avgLatencyMs": 5767, "p50LatencyMs": 2541, "p95LatencyMs": 8992, "totalTokens": 1950 },
+    { "model": "claude-sonnet-4-20250514",   "total": 2, "passed": 2, "passRate": 1.0,  "avgLatencyMs": 1870, "p50LatencyMs": 1640, "p95LatencyMs": 2310, "totalTokens": 486  },
+    { "model": "gpt-4o",                     "total": 2, "passed": 2, "passRate": 1.0,  "avgLatencyMs": 2130, "p50LatencyMs": 1980, "p95LatencyMs": 2450, "totalTokens": 512  }
+  ]
 }
 ```
 
@@ -60,7 +47,7 @@ A framework for testing LLM output quality. Think pytest, but for prompts.
 
 ## Tech stack
 
-TypeScript, Zod, Gemini API, Anthropic API
+TypeScript, Zod, Gemini API, Anthropic API, OpenAI API
 
 ## Getting started
 
