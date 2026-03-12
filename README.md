@@ -20,6 +20,36 @@ A framework for testing LLM output quality. Think pytest, but for prompts.
 └────────────────┴──────────┴──────────┴────────────┘
 ```
 
+## Example output
+
+### CLI report
+
+```
+┌──────────────────┬───────┬────────┬──────────┬─────────────┬─────────────┬──────────────┐
+│ Model            │ Total │ Passed │ Pass %   │ Avg (ms)    │ p50 (ms)    │ p95 (ms)     │
+├──────────────────┼───────┼────────┼──────────┼─────────────┼─────────────┼──────────────┤
+│ gemini-2.5-flash │ 2     │ 1      │ 50.0%    │ 5767        │ 2541        │ 8992         │
+└──────────────────┴───────┴────────┴──────────┴─────────────┴─────────────┴──────────────┘
+```
+
+### JSON report (excerpt)
+
+```json
+{
+  "caseId": "test-01",
+  "model": "gemini-2.5-flash",
+  "output": "An AI agent is a system that perceives its environment and acts autonomously to achieve specific goals.",
+  "passed": true,
+  "assertions": [
+    { "type": "contains", "passed": true, "message": "Output contains: \"agent\"" },
+    { "type": "notContains", "passed": true, "message": "Output does not contain: \"I cannot\"" },
+    { "type": "lengthInRange", "passed": true, "message": "Output length 103 is in range [20, 300]" }
+  ],
+  "latencyMs": 2541,
+  "tokensUsed": 232
+}
+```
+
 ## Core modules
 
 - **Test Runner** — loads suites, runs cases against configured models

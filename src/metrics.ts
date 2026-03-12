@@ -1,15 +1,4 @@
-import type { TestResult } from './types.js';
-
-export interface MetricsSummary {
-  model: string;
-  total: number;
-  passed: number;
-  passRate: number;
-  avgLatencyMs: number;
-  p50LatencyMs: number;
-  p95LatencyMs: number;
-  totalTokens: number;
-}
+import type { TestResult, MetricsSummary } from './types.js';
 
 export function collectMetrics(results: TestResult[]): MetricsSummary[] {
   const byModel = groupByModel(results);

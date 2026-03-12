@@ -50,3 +50,14 @@ export interface LLMProvider {
   call(prompt: string): Promise<ProviderResponse>;
   modelName: string;
 }
+
+export interface MetricsSummary {
+  model: string;
+  total: number;
+  passed: number;
+  passRate: number;
+  avgLatencyMs: number;
+  p50LatencyMs: number;
+  p95LatencyMs: number;
+  totalTokens: number;
+}
